@@ -111,10 +111,19 @@
                 <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
             </div>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" href="<?php echo PATH_MAIN ?>logout" role="button">Cerrar sesión</a>
-<!--            <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button"><i-->
-<!--                    class="fas fa-th-large"></i></a>-->
+
+        <li class="nav-item dropdown">
+            <a class="nav-link" data-toggle="dropdown" href="#">
+                <?php echo $this->session->userdata('user')['full_name']; ?>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right">
+                <a href="<?php echo PATH_MAIN; ?>dashboard/profile" class="dropdown-item">
+                    <i class="fas fa-user mr-2"></i> Ver perfil
+                </a>
+                <a href="<?php echo PATH_MAIN; ?>logout" class="dropdown-item">
+                    <i class="fas fa-sign-out-alt mr-2"></i> Cerrar sesión
+                </a>
+            </div>
         </li>
     </ul>
 </nav>

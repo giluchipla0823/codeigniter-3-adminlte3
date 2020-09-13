@@ -55,7 +55,8 @@ $route['translate_uri_dashes'] = FALSE;
 
 // Auth - routes
 $route['login']['GET'] = 'auth/login/index';
-$route['login/authenticate']['POST'] = 'auth/login/authenticate';
+$route['login']['POST'] = 'auth/login/index';
+
 $route['logout']['GET'] = 'auth/logout';
 
 // Dashboard - routes
@@ -63,6 +64,7 @@ $route['dashboard']['GET'] = 'dashboard/home/home/index';
 $route['dashboard/home']['GET'] = 'dashboard/home/home/index';
 
 
+$route['dashboard/profile']['GET'] = 'dashboard/profile/profile/index';
 $route['dashboard/users']['GET'] = 'dashboard/users/users/index';
 
 

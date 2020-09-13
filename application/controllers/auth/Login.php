@@ -8,20 +8,29 @@ class Login extends CI_Controller
      *
      */
     public function index(){
+        if($this->input->method() === 'post' && $this->authenticate()){
+            return redirect(base_url('dashboard'));
+        }
+
         $this->load->view('auth/login/index_view');
     }
 
-    /**
+    /**s
      * Autenticación de usuarios.
      *
+     * @return bool
      */
-    public function authenticate(){
+    private function authenticate(){
         $request = $this->input->post();
 
         $email = $request['email'];
         $password = $request['password'];
 
         $this->setRules();
+
+        if(!$this->form_validation->run()){
+            return false;
+        }
 
         $this->load->model('User_model');
 
@@ -31,10 +40,10 @@ class Login extends CI_Controller
                 'Las credenciales de acceso no son correctas.'
             );
 
-            return redirect(base_url('login'));
+            return false;
         }
 
-        redirect(base_url('dashboard'));
+        return true;
     }
 
     /**

@@ -87,5 +87,6 @@ defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest auto
 // Project constants
 define('PATH_MAIN', 'http://localhost:8000/');
 define('PATH_ASSETS', PATH_MAIN . 'assets/');
+define('PATH_JS', PATH_ASSETS . 'js/');
 define('PATH_PLUGINS', PATH_ASSETS . 'plugins/');
 define('PATH_DIST', PATH_ASSETS . 'dist/');

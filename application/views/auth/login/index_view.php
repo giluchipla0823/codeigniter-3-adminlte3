@@ -23,6 +23,17 @@
             margin: 0;
             padding-left: 10px;
         }
+
+        ul.parsley-errors-list{
+            width: 100%;
+            margin: 0;
+            list-style-type: none;
+            padding-left: 10px;
+        }
+
+        ul.parsley-errors-list > li{
+            color: red;
+        }
     </style>
 </head>
 <body class="hold-transition login-page">
@@ -55,14 +66,16 @@
             </div>
             <?php } ?>
 
-            <form action="<?php echo PATH_MAIN ?>login/authenticate" method="post" novalidate>
+            <form id="login-form" action="" method="post" data-parsley-validate="" novalidate>
                 <div class="input-group mb-3">
                     <input
                         type="email"
                         name="email"
                         value="<?php echo set_value('email'); ?>"
                         class="form-control"
-                        placeholder="Correo electrónico" />
+                        placeholder="Correo electrónico"
+                        required />
+
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-envelope"></span>
@@ -70,7 +83,12 @@
                     </div>
                 </div>
                 <div class="input-group mb-3">
-                    <input type="password" name="password" class="form-control" placeholder="Contraseña">
+                    <input
+                        type="password"
+                        name="password"
+                        class="form-control"
+                        placeholder="Contraseña"
+                        required />
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-lock"></span>
@@ -112,6 +130,35 @@
 <script src="<?php echo PATH_PLUGINS; ?>bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
 <script src="<?php echo PATH_DIST; ?>js/adminlte.min.js"></script>
+
+<script src="<?php echo PATH_JS; ?>/parsley-validator/parsley.min.js"></script>
+<script src="<?php echo PATH_JS; ?>/parsley-validator/i18n/es.js"></script>
+
+<script type="text/javascript">
+$(function () {
+    var config = {
+      errorsContainer: function(elem){
+        var $el = elem.$element.closest('.input-group');
+
+        if($el.length > 0){
+            return $el;
+        }
+
+        return elem;
+      }
+    };
+
+    $('#login-form').parsley(config)
+        .on('field:error', function(){
+            this.$element.removeClass('is-valid').addClass('is-invalid');
+        })
+        .on('field:success', function(){
+            this.$element.removeClass('is-invalid').addClass('is-valid');
+        })
+        .on('field:validated', function() {})
+        .on('form:submit', function() {});
+});
+</script>
 
 </body>
 </html>
