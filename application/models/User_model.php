@@ -99,7 +99,7 @@ class User_model extends CI_Model
         return $query->row();
     }
 
-    public function updateVerified($id){
+    public function markAsVerified($id){
         $today = new DateTime('now');
 
         $data = array(

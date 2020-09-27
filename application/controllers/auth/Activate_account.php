@@ -17,7 +17,7 @@ class Activate_account extends CI_Controller
             throw new Exception("El usuario no ha sido encontrado.", 404);
         }
 
-        if(!$this->User_model->updateVerified($user->id)){
+        if(!$this->User_model->markAsVerified($user->id)){
             throw new Exception(
                 "Ocurrió un problema al activar su cuenta de usuario.",
                 500
