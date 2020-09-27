@@ -34,6 +34,10 @@
         ul.parsley-errors-list > li{
             color: red;
         }
+
+        ul.parsley-errors-list > li::before{
+            content: ' * ';
+        }
     </style>
 </head>
 <body class="hold-transition login-page">
@@ -116,7 +120,7 @@
                 <a href="">Recuperar contraseña</a>
             </p>
             <p class="mb-0">
-                <a href="" class="text-center">Crear cuenta</a>
+                <a href="<?php echo base_url('register') ?>" class="text-center">Crear cuenta</a>
             </p>
         </div>
         <!-- /.login-card-body -->
