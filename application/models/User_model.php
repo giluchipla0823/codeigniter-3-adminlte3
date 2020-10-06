@@ -112,4 +112,21 @@ class User_model extends CI_Model
 
         return (bool) $this->db->update($this->table, $data);
     }
+
+    /**
+     * Actualizar la contraseña.
+     *
+     * @param string $email
+     * @param string $password
+     * @return bool
+     */
+    public function updatePassword($email, $password){
+        $data = array(
+            'password' => $this->encryption->encrypt($password)
+        );
+
+        $this->db->where('email', $email);
+
+        return (bool) $this->db->update($this->table, $data);
+    }
 }

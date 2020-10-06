@@ -24,7 +24,7 @@ class Register extends CI_Controller
 
         if(!$user = $this->User_model->create($request)){
             $this->session->set_flashdata(
-                'error_register_user',
+                'error',
                 'Ocurrió un problema al registrar sus datos.'
             );
 
@@ -33,7 +33,7 @@ class Register extends CI_Controller
 
         if(!$this->sendEmail($user)){
             $this->session->set_flashdata(
-                'error_register_user',
+                'error',
                 'Ocurrió un problema al enviar el correo de confirmación al usuario.'
             );
 
@@ -111,13 +111,6 @@ class Register extends CI_Controller
         );
 
         $this->form_validation->set_rules($rules);
-        $this->form_validation->set_message("valid_email", "El campo %s debe ser un email válido.");
-        $this->form_validation->set_message("required", "El campo %s es requerido.");
-        $this->form_validation->set_message("min_length", "El campo %s debe contener mínimo %s caracteres.");
-        $this->form_validation->set_message("max_length", "El campo %s debe contener máximo %s caracteres.");
-        $this->form_validation->set_message("matches", "Las contraseñas no coinciden.");
-        $this->form_validation->set_message("is_unique", "El campo %s ya se encuentra registrado.");
-
     }
 
 }

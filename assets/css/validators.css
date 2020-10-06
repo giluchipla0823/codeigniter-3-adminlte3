@@ -1,0 +1,19 @@
+ul.validation-errors{
+    margin: 0;
+    padding-left: 10px;
+}
+
+ul.parsley-errors-list{
+    width: 100%;
+    margin: 0;
+    list-style-type: none;
+    padding-left: 10px;
+}
+
+ul.parsley-errors-list > li{
+    color: red;
+}
+
+ul.parsley-errors-list > li::before{
+    content: ' * ';
+}

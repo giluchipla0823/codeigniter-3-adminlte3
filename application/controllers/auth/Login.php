@@ -36,7 +36,7 @@ class Login extends CI_Controller
 
         if(!$this->User_model->authenticate($email, $password)){
             $this->session->set_flashdata(
-                'error_login',
+                'error',
                 'Las credenciales de acceso no son correctas.'
             );
 
@@ -65,7 +65,5 @@ class Login extends CI_Controller
         );
 
         $this->form_validation->set_rules($rules);
-        $this->form_validation->set_message("valid_email", "El campo %s debe ser un email válido.");
-        $this->form_validation->set_message("required", "El campo %s es requerido.");
     }
 }

@@ -18,27 +18,7 @@
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 
-    <style type="text/css">
-        ul.validation-errors{
-            margin: 0;
-            padding-left: 10px;
-        }
-
-        ul.parsley-errors-list{
-            width: 100%;
-            margin: 0;
-            list-style-type: none;
-            padding-left: 10px;
-        }
-
-        ul.parsley-errors-list > li{
-            color: red;
-        }
-
-        ul.parsley-errors-list > li::before{
-            content: ' * ';
-        }
-    </style>
+    <link rel="stylesheet" href="<?php echo PATH_CSS ?>validators.css" />
 </head>
 <body class="hold-transition register-page">
 <div class="register-box">
@@ -49,25 +29,9 @@
     <div class="card">
         <div class="card-body register-card-body">
 
-            <?php
-            $errorsHtml = '';
+            <?php $this->load->view('partials/flash_error_message_view'); ?>
 
-            if($this->session->flashdata('error_register_user')){
-                $errorsHtml .= '<li>'. $this->session->flashdata('error_register_user') .'</li>';
-            }
-
-            if(validation_errors()){
-                $errorsHtml .= validation_errors("<li>", "</li>");
-            }
-            ?>
-
-            <?php if($errorsHtml){ ?>
-                <div class="alert alert-danger">
-                    <ul class="validation-errors">
-                        <?php echo $errorsHtml; ?>
-                    </ul>
-                </div>
-            <?php } ?>
+            <?php $this->load->view('partials/flash_success_message_view'); ?>
 
             <form id="register-form" action="" method="post" data-parsley-validate="" novalidate>
                 <div class="input-group mb-3">
@@ -184,32 +148,11 @@
 
 <script src="<?php echo PATH_JS; ?>/parsley-validator/parsley.min.js"></script>
 <script src="<?php echo PATH_JS; ?>/parsley-validator/i18n/es.js"></script>
+<script src="<?php echo PATH_JS; ?>/custom.js"></script>
 
 <script type="text/javascript">
     $(function () {
-        var config = {
-            errorsContainer: function(elem){
-                var $el = elem.$element.closest('.input-group');
-
-                if($el.length > 0){
-                    return $el;
-                }
-
-                return elem;
-            }
-        };
-
-        $('#register-form').parsley(config)
-            .on('field:error', function(){
-                this.$element.removeClass('is-valid').addClass('is-invalid');
-            })
-            .on('field:success', function(){
-                this.$element.removeClass('is-invalid').addClass('is-valid');
-            })
-            .on('field:validated', function() {})
-            .on('form:submit', function() {
-                // return false;
-            });
+        instanceParsleyValidator('#register-form');
     });
 </script>
 </body>
